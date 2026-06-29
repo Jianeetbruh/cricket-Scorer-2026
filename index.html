@@ -64,23 +64,8 @@
     }
   } catch (__e) {}
 
-  // Show preview banner if not in iframe. Agency-plan customers preview on
-  // *.agcy.dev (see ReactNavbar.tsx isAgencyPlan base-domain pick) and share
-  // those URLs with their clients, so suppress the banner on agcy.dev.
-  if (window.self === window.top && !/.agcy.dev$/i.test(window.location.hostname)) {
-    function ensureBanner() {
-      if (!document.body) return;
-      if (document.querySelector('.ls-preview-banner')) return;
-      var banner = document.createElement('div');
-      banner.className = 'ls-preview-banner';
-      banner.textContent = 'This is a preview. Publish your website to make it live on your own domain.';
-      document.body.appendChild(banner);
-    }
-    if (document.body) ensureBanner();
-    document.addEventListener('DOMContentLoaded', ensureBanner);
-    // Re-add banner if React/Vite removes it
-    new MutationObserver(ensureBanner).observe(document.documentElement, { childList: true, subtree: true });
-  }
+  
+  
   // Console log capture: continuously tail to /__console so the sandbox-side
   // .browser-log file approximates a live tail rather than a flush-on-trigger
   // snapshot. The sandbox agent's system prompt hints .browser-log as a read
@@ -4352,4 +4337,3 @@ import("/node_modules/@react-router/dev/dist/config/defaults/entry.client.tsx");
 })();
 </script>
 </body></html>
-  
